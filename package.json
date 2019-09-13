@@ -8,5 +8,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^5.1.0"
+  },
+  "devDependencies": {
+    "request": "^2.88.0"
+  }
 }
