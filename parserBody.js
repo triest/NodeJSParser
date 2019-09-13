@@ -8,8 +8,10 @@ module.exports = {
                 let data = res.text;
                 try {
                     const resdata = JSON.parse(data)
-                    console.log(resdata[0].content)
-                    //   console.log(resdata[1])
+                    let prop = resdata[1].prop;
+                    let content = resdata[0].content;
+                    console.log(content);
+                    let linkElement = content.getElementByClassName("member-link");
                 } catch (err) {
                     console.error(err)
                 }
