@@ -2,7 +2,8 @@ const superagent = require('superagent')
 const DomParser = require('dom-parser')
 const HTMLParser = require('node-html-parser')
 const cheerio = require('cheerio')
-let arrayLinks = Array()
+
+let links
 
 function doRequwest (page) {
   return new Promise(function (resolve, reject) {
@@ -33,7 +34,7 @@ module.exports = {
     let prop
     let cheerio
     let $
-    let links
+    let arrayLinks = Array()
     next = true
     while (page < 30) {
       page = page + 1
@@ -65,8 +66,42 @@ module.exports = {
         console.error(err)
       }
 
-      //     console.log(arrayLinks)
+      //console.log(arrayLinks)
+      return arrayLinks
+
     }
-    console.log(arrayLinks.length)
+
   },
+
+  parseMatch: async function (arrayLinks) {
+    let parser = new DomParser()
+    let doom
+    let temp
+    let cheerio
+    let doc
+    let $
+    console.log(arrayLinks)
+    throw new Error('your die message here')
+    url = 'https://www.marathonbet.ru/su/betting/Football/Internationals/' +
+      arrayLinks[0]
+    console.log(url)
+    superagent.get(
+      url).end((err, res) => {
+      if (!err && res.statusCode == 200) {
+        doom = parser.parseFromString(res)
+        temp = parser.parseFromString(doom.rawHTML)
+        temp = temp.rawHTML
+        console.log(temp)
+        //doc = parser.parseFromString(temp, 'text/xml')
+
+//        cheerio = require('cheerio')
+        //   $ = cheerio.load(temp)
+
+        //   console.log($)
+      } else {
+
+      }
+    })
+  },
+
 }
